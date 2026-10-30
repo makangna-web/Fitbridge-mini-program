@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#f5f5ef" />
+  <title>FitBridge｜健身房入门助手</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="app-shell">
+    <header class="topbar">
+      <a class="brand" href="#home" aria-label="FitBridge 首页">
+        <span class="brand-mark">f<span>+</span></span>
+        <span><strong>fitbridge</strong><small>GYM, MADE FAMILIAR</small></span>
+      </a>
+      <button class="gym-switch" id="gymSwitch" aria-label="切换场馆">
+        <span class="pin">⌖</span><span><small>当前场馆</small><strong id="gymName">Northside Fitness</strong></span><span class="chevron">⌄</span>
+      </button>
+      <button class="avatar" aria-label="个人页面" id="profileBtn">K</button>
+    </header>
+
+    <main id="home">
+      <section class="hero">
+        <div class="hero-copy">
+          <p class="eyebrow"><span class="live-dot"></span> YOUR FIRST GYM, MADE SIMPLE</p>
+          <h1>今天，练得<br /><em>更自在。</em></h1>
+          <p class="hero-sub">找到器械、看懂说明，从熟悉健身房开始。</p>
+          <div class="hero-note"><span class="spark">✳</span> 双语说明 · 场馆专属 · 随时查阅</div>
+        </div>
+        <div class="hero-art" aria-hidden="true">
+          <div class="art-sun"></div><div class="art-orbit orbit-one"></div><div class="art-orbit orbit-two"></div>
+          <div class="art-person"><i class="head"></i><i class="body"></i><i class="arm"></i><i class="leg"></i></div>
+          <div class="art-dumbbell"><i></i><b></b><i></i></div>
+          <span class="art-label">READY WHEN YOU ARE</span>
+        </div>
+        <div class="hero-index">01 <span>/ 03</span></div>
+      </section>
+
+      <section class="welcome-strip">
+        <div class="welcome-icon">✦</div><p><strong>第一次来？从这里开始。</strong><span>按区域或名称找器械，几步看懂怎么用。</span></p><span class="strip-arrow">↗</span>
+      </section>
+
+      <section class="equipment-section" id="equipmentSection">
+        <div class="section-heading">
+          <div><p class="eyebrow muted">EXPLORE YOUR GYM</p><h2>器械探索 <span id="equipmentCount">06</span></h2></div>
+          <button class="view-all" id="viewAll">查看全部 <span>↗</span></button>
+        </div>
+        <label class="searchbox"><span class="search-icon">⌕</span><input id="searchInput" type="search" placeholder="搜器械名称，例如：跑步机" autocomplete="off" /><kbd>⌘ K</kbd></label>
+        <div class="filters" id="filters" aria-label="器械分类筛选"></div>
+        <div class="equipment-grid" id="equipmentGrid"></div>
+        <div class="empty-state" id="emptyState" hidden><span>⌕</span><strong>没有找到相关器械</strong><p>试试其他关键词，或清除分类筛选。</p><button id="clearFilters">清除筛选</button></div>
+      </section>
+
+      <section class="tip-banner">
+        <div class="tip-badge">FIT<br />TIP</div><div><p class="eyebrow">A LITTLE REMINDER</p><strong>从轻重量开始，找到适合自己的节奏。</strong><p>不确定怎么调整？向场馆工作人员或合格教练寻求帮助。</p></div><span class="tip-star">✳</span>
+      </section>
+      <footer><span>FITBRIDGE</span><span>让每一次开始，都轻松一点。</span><span>DEMO · 2026</span></footer>
+    </main>
+
+    <nav class="bottom-nav" aria-label="底部导航">
+      <button class="nav-item active" data-tab="home"><span>⌂</span><small>首页</small></button>
+      <button class="nav-item" data-tab="favorites"><span>♡</span><small>收藏</small><i id="favCount" hidden>0</i></button>
+      <button class="nav-scan" id="scanBtn" aria-label="扫码"><span>⌗</span></button>
+      <button class="nav-item" data-tab="discover"><span>◈</span><small>发现</small></button>
+      <button class="nav-item" data-tab="profile"><span>○</span><small>我的</small></button>
+    </nav>
+  </div>
+
+  <div class="modal-backdrop" id="modalBackdrop" hidden>
+    <section class="detail-modal" role="dialog" aria-modal="true" aria-labelledby="detailTitle">
+      <button class="modal-close" id="modalClose" aria-label="关闭详情">×</button>
+      <div class="detail-visual" id="detailVisual"><span class="detail-tag">YOUR GYM GUIDE</span><span class="machine-illustration" id="machineIllustration">▥</span><span class="detail-zone" id="detailZone"></span></div>
+      <div class="detail-content">
+        <div class="detail-title-row"><div><p class="eyebrow muted" id="detailCategory"></p><h2 id="detailTitle"></h2><p class="english-name" id="detailEnglish"></p></div><button class="save-btn" id="saveBtn" aria-label="收藏器械">♡</button></div>
+        <p class="detail-summary" id="detailSummary"></p>
+        <div class="detail-rule"></div>
+        <div class="detail-block"><h3><span>01</span> 怎么开始 <small>QUICK GUIDE</small></h3><ol id="detailSteps"></ol></div>
+        <div class="caution-box"><span>!</span><p id="detailCaution"></p></div>
+        <div class="alternative-block"><div><p class="eyebrow muted">IF IT'S IN USE</p><h3>器械正在使用？</h3></div><div id="alternatives"></div><small class="static-note">预先整理的替代选择 · 非实时器械状态</small></div>
+        <div class="content-disclaimer">演示内容仅用于产品体验展示，不构成个性化训练建议。实际器械内容须由场馆和合格专业人士审核。</div>
+      </div>
+    </section>
+  </div>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  <script src="app.js"></script>
+</body>
+</html>
